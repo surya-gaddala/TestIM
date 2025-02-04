@@ -7,7 +7,7 @@ on:
 
 jobs:
   run-testim:
-    runs-on: ubuntu-latest  # GitHub-hosted runner
+    runs-on: windows-latest  # ✅ Use Windows runner instead of Ubuntu
 
     steps:
       - name: Checkout Repository
@@ -16,17 +16,51 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # Use Node.js 20 (or change to 18 if needed)
+          node-version: '20'  # ✅ Use a specific version instead of 'lts'
 
       - name: Install Testim CLI
         run: npm install -g @testim/testim-cli
 
       - name: Run Testim Tests
         run: |
-          testim --token "${{ secrets.TESTIM_TOKEN }}" \
-                 --project "6XcsY93woVA11IJ0R6Tg" \
-                 --grid "Testim-Grid" \
-                 --mode "selenium" \
-                 --branch "Updated" \
-                 --test-plan "FirstTestPlan" \
+          testim --token "${{ secrets.TESTIM_TOKEN }}" `
+                 --project "6XcsY93woVA11IJ0R6Tg" `
+                 --grid "Testim-Grid" `
+                 --mode "selenium" `
+                 --branch "Updated" `
+                 --test-plan "FirstTestPlan" `
                  --timeout 60000
+        shell: pwsh  # ✅ Use PowerShell (Windows default shell)
+name: Testim E2E Tests
+
+on:
+  push:
+    branches:
+      - main  # Runs tests on push to main
+
+jobs:
+  run-testim:
+    runs-on: windows-latest  # ✅ Use Windows runner instead of Ubuntu
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'  # ✅ Use a specific version instead of 'lts'
+
+      - name: Install Testim CLI
+        run: npm install -g @testim/testim-cli
+
+      - name: Run Testim Tests
+        run: |
+          testim --token "${{ secrets.TESTIM_TOKEN }}" `
+                 --project "6XcsY93woVA11IJ0R6Tg" `
+                 --grid "Testim-Grid" `
+                 --mode "selenium" `
+                 --branch "Updated" `
+                 --test-plan "FirstTestPlan" `
+                 --timeout 60000
+        shell: pwsh  # ✅ Use PowerShell (Windows default shell)
