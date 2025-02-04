@@ -3,23 +3,23 @@ name: Testim E2E Tests
 on:
   push:
     branches:
-      - main  # Run tests on push to main branch
+      - main  # Runs tests on push to main
 
 jobs:
   run-testim:
-    runs-on: ubuntu-latest  # Use Linux runner
+    runs-on: ubuntu-latest  # GitHub-hosted runner
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2  # Fetch the repo
+        uses: actions/checkout@v2
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 'lts'  # Use latest LTS version
+          node-version: '20'  # Use Node.js 20 (or change to 18 if needed)
 
       - name: Install Testim CLI
-        run: npm install -g @testim/testim-cli  # Install Testim CLI globally
+        run: npm install -g @testim/testim-cli
 
       - name: Run Testim Tests
         run: |
