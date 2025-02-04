@@ -1,29 +1,27 @@
-name: Testim E2E Tests
+name: Run Testim Tests on Windows
 
-on:
-  push:
-    branches:
-      - main  # Runs tests on push to main
+on: [push]
 
 jobs:
-  run-testim:
+  testim-run:
     runs-on: windows-latest  # ✅ Use Windows runner
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'  # ✅ Use a specific Node.js version
 
       - name: Install Testim CLI
         run: npm install -g @testim/testim-cli
-        shell: cmd  # ✅ Run in CMD (Command Prompt)
 
       - name: Run Testim Tests
+        shell: cmd  # ✅ Use CMD instead of PowerShell
         run: |
+          set TESTIM_TOKEN=${{ secrets.TESTIM_TOKEN }}
           testim --token %TESTIM_TOKEN% ^
                  --project "6XcsY93woVA11IJ0R6Tg" ^
                  --grid "Testim-Grid" ^
@@ -31,6 +29,3 @@ jobs:
                  --branch "Updated" ^
                  --test-plan "FirstTestPlan" ^
                  --timeout 60000
-        shell: cmd  # ✅ Run in CMD (Command Prompt)
-        env:
-          TESTIM_TOKEN: ${{ secrets.TESTIM_TOKEN }}  # ✅ Use GitHub Secret
