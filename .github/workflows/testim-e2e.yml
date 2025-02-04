@@ -1,3 +1,16 @@
+# name: Testim E2E
+# on: [push]
+
+# jobs:
+#     run-testimio-cli:
+#         runs-on: windows-latest
+#         steps:
+#             - uses: actions/checkout@v2
+#             - uses: actions/setup-node@v4
+#               with:
+#                 node-version: '20'
+#             - run: npm install -g @testim/testim-cli
+#             - run: testim --token "olSaTgxV5NA2g6pfyXA3yKqGZbapZ8r4OYGNNiGeV7WfBHbV0P" --project "6XcsY93woVA11IJ0R6Tg" --grid "Testim-Grid" --mode "extension" --branch "Updated" --suite "FirstSuite" --test-config "FHD Edge" --parallel 1
 name: Testim E2E
 on: [push]
 
@@ -9,5 +22,6 @@ jobs:
             - uses: actions/setup-node@v4
               with:
                 node-version: '20'
+                # You can also change 'lts' to any supported LTS Node.js version.
             - run: npm install -g @testim/testim-cli
-            - run: testim --token "olSaTgxV5NA2g6pfyXA3yKqGZbapZ8r4OYGNNiGeV7WfBHbV0P" --project "6XcsY93woVA11IJ0R6Tg" --grid "Testim-Grid" --mode "extension" --branch "Updated" --suite "FirstSuite" --test-config "FHD Edge" --parallel 1
+            - run: testim --token "olSaTgxV5NA2g6pfyXA3yKqGZbapZ8r4OYGNNiGeV7WfBHbV0P" --project "6XcsY93woVA11IJ0R6Tg" --grid "Testim-Grid" --mode "extension" --branch "Updated" --suite "FirstSuite" --test-config "HD 1366x768" --parallel 1 --timeout 120000
