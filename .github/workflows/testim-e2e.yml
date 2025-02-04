@@ -20,18 +20,17 @@ jobs:
 
       - name: Install Testim CLI
         run: npm install -g @testim/testim-cli
-        shell: cmd  # ✅ Use CMD
+        shell: cmd  # ✅ Run in CMD (Command Prompt)
 
       - name: Run Testim Tests
         run: |
-          testim --token "%TESTIM_TOKEN%" ^
+          testim --token %TESTIM_TOKEN% ^
                  --project "6XcsY93woVA11IJ0R6Tg" ^
                  --grid "Testim-Grid" ^
                  --mode "selenium" ^
                  --branch "Updated" ^
                  --test-plan "FirstTestPlan" ^
                  --timeout 60000
-        shell: cmd  # ✅ Run in CMD
-
-    env:
-      TESTIM_TOKEN: ${{ secrets.TESTIM_TOKEN }}  # ✅ Securely pass the token
+        shell: cmd  # ✅ Run in CMD (Command Prompt)
+        env:
+          TESTIM_TOKEN: ${{ secrets.TESTIM_TOKEN }}  # ✅ Use GitHub Secret
