@@ -16,7 +16,7 @@ name: Testim E2E
 on:
   push:
     branches:
-      - main  # This can be adjusted if you want it to trigger for other branches
+      - main  # Adjust if you want to trigger on other branches
 
 jobs:
   run-testimio-cli:
@@ -39,14 +39,14 @@ jobs:
                  --project "6XcsY93woVA11IJ0R6Tg" \
                  --grid "Testim-Grid" \
                  --mode "extension" \
-                 --branch "master" \
+                 --branch "Updated" \
                  --suite "FirstSuite" \
                  --test-config "HD 1366x768" \
                  --parallel 1 \
                  --timeout 120000
 
-      - name: Upload test results (Optional)
-        uses: actions/upload-artifact@v2
+      - name: Upload test results
+        uses: actions/upload-artifact@v3  # Updated to v3
         with:
           name: testim-e2e-results
-          path: ./testim-results  # Make sure to specify the correct path to the test results
+          path: ./testim-results  # Adjust if your results are stored in a different path
