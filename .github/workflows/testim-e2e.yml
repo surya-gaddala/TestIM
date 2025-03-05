@@ -33,9 +33,18 @@ jobs:
         runs-on: windows-latest
         steps:
             - uses: actions/checkout@v2
+
             - uses: actions/setup-node@v4
               with:
                 node-version: 'lts'
-                # You can also change 'lts' to any supported LTS Node.js version.
+
             - run: npm install -g @testim/testim-cli
-            - run: testim --token "I1MSJ8Af4vPiU0mmDiZDAULYuW8LvGZMr8rdngcMwCx9dX5Baz" --project "ZqL1cbmHvWl7mJal4cEZ" --grid "Testim-Grid" --mode "extension" --branch "Main" --suite "DemoWebShop" --test-config "FHD 1920x1080"
+
+            - run: |
+                testim --token "I1MSJ8Af4vPiU0mmDiZDAULYuW8LvGZMr8rdngcMwCx9dX5Baz" `
+                       --project "ZqL1cbmHvWl7mJal4cEZ" `
+                       --grid "browserstack" `
+                       --mode "extension" `
+                       --branch "master" `
+                       --test-config "FHD 1920x1080"
+              shell: pwsh
