@@ -11,6 +11,20 @@
 #                 node-version: '20'
 #             - run: npm install -g @testim/testim-cli
 #             - run: testim --token "olSaTgxV5NA2g6pfyXA3yKqGZbapZ8r4OYGNNiGeV7WfBHbV0P" --project "6XcsY93woVA11IJ0R6Tg" --grid "Testim-Grid" --mode "extension" --branch "Updated" --suite "FirstSuite" --test-config "FHD Edge" --parallel 1
+# name: Testim E2E
+# on: [push]
+
+# jobs:
+#     run-testimio-cli:
+#         runs-on: windows-latest
+#         steps:
+#             - uses: actions/checkout@v2
+#             - uses: actions/setup-node@v4
+#               with:
+#                 node-version: '20'
+#                 # You can also change 'lts' to any supported LTS Node.js version.
+#             - run: npm install -g @testim/testim-cli
+#             - run: testim --token "olSaTgxV5NA2g6pfyXA3yKqGZbapZ8r4OYGNNiGeV7WfBHbV0P" --project "6XcsY93woVA11IJ0R6Tg" --grid "custom-grid" --mode "extension" --branch "Updated" --suite "FirstSuite" --test-config "FHD Edge" --parallel 2
 name: Testim E2E
 on: [push]
 
@@ -21,7 +35,7 @@ jobs:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v4
               with:
-                node-version: '20'
+                node-version: 'lts'
                 # You can also change 'lts' to any supported LTS Node.js version.
             - run: npm install -g @testim/testim-cli
-            - run: testim --token "olSaTgxV5NA2g6pfyXA3yKqGZbapZ8r4OYGNNiGeV7WfBHbV0P" --project "6XcsY93woVA11IJ0R6Tg" --grid "custom-grid" --mode "extension" --branch "Updated" --suite "FirstSuite" --test-config "FHD Edge" --parallel 2
+            - run: testim --token "I1MSJ8Af4vPiU0mmDiZDAULYuW8LvGZMr8rdngcMwCx9dX5Baz" --project "ZqL1cbmHvWl7mJal4cEZ" --grid "Testim-Grid" --mode "extension" --branch "Main" --suite "DemoWebShop" --test-config "FHD 1920x1080"
